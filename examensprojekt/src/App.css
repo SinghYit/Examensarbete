@@ -1,7 +1,9 @@
-* { margin: 0;
-padding: 0;}
+* {
+  margin: 0;
+  padding: 0;
+}
 
-.containerWrapper {  
+.containerWrapper {
   padding: 0 80px;
 }
 
@@ -10,7 +12,7 @@ padding: 0;}
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #D7A9E3FF;
+  background-color: #6883bc;
   color: white;
   width: 100%;
   overflow: visible;
@@ -34,30 +36,30 @@ padding: 0;}
 }
 
 .navbar-links li {
-  background-color: #D7A9E3FF;
+  background-color: #6883bc;
 }
 
 .navbar-links li:hover {
-  background-color: #8BBEE8FF;
+  background-color: #79a7d3;
 }
 
 /*Navbar burger button*/
 .toggle-button {
   position: absolute;
-  top: 0.20rem;
+  top: 0.2rem;
   right: 1rem;
   display: none;
   flex-direction: column;
   justify-content: space-between;
   width: 30px;
   height: 21px;
-  margin-top: 20px
+  margin-top: 20px;
 }
 
 .toggle-button .bar {
   height: 10px;
   width: -10px;
-  background-color:white;
+  background-color: white;
   border-radius: 10px;
   margin: -10px;
 }
@@ -74,42 +76,79 @@ padding: 0;}
   transform: translateY(-10px) rotate(-45deg);
 }
 
+.quotesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.quote {
+  flex-basis: 30%;
+  background-color: #79a7d3;
+  border: solid 5px #6883bc;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.quoteText {
+  text-align: center;
+  min-height: 70px;
+  color: white;
+  background-color: #6883bc;
+}
+
+.buttonWrapper {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button {
+  width: 33%;
+  border-color: aqua;
+  border-radius: 5px;
+  background-color: white;
+}
+
 @media (max-width: 768px) {
   .toggle-button {
-      display:flex;
+    display: flex;
   }
 
   .navbar-links {
-      display: none;
-      width: 100%;
+    display: none;
+    width: 100%;
   }
 
   .navbar {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 70px;
   }
 
   .navbar-links ul {
-      width: 100%;
-      flex-direction: column;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 80px;
   }
 
   .navbar-links li {
-      text-align: center;
+    text-align: center;
   }
 
   .navbar-links li a {
-      padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
   }
 
   .navbar-links.active {
-      display: flex;
+    display: flex;
   }
-}
 
-
-@media (max-width: 768px) {
-  .containerWrapper {  
+  .containerWrapper {
     padding: 0;
+  }
+
+  .quote {
+    flex-basis: 100%;
   }
 }
