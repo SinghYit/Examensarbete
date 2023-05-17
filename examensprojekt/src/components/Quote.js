@@ -1,51 +1,22 @@
 import { React, useState } from "react";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Quote = () => {
   let { state } = useLocation();
-  console.log(state.comments);
-  const [addQuote, setAddQuote] = useState("");
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
   const [addComment, setAddComment] = useState("");
   const [editQuoteValue, setEditQuoteValue] = useState("");
   const [editCommentValue, setEditCommentValue] = useState("");
-  const [someRandom, setSomeRandom] = useState("");
-  const [searchItem, setSearchItem] = useState("");
+  const [randomizedValue, setRandomizedValue] = useState("");
   const [items, setItems] = useState([]);
 
-  /**
-   * This function takes the value of addQuote and sends a POST request with that value
-   */
-  const addQuotes = async () => {
-    //Validating input fields, to check if user has entered a empty string value
-    if (addQuote === "") {
-      document.getElementById("errorAddQuote").innerHTML =
-        "Please enter a text";
-      return;
-    } else {
-      document.getElementById("errorAddQuote").innerHTML =
-        "You have added a quote";
-    }
+  //This function deletes a quote with a specific object id
 
-    //Updating the state of someRandom, causing useEffect to run again, to fetch the latest data
-    setSomeRandom(Math.random());
-
-    //Sending a POST request with the value of addQuote
-    await fetch("http://localhost:3000/Quotes", {
-      method: "POST",
-      headers: { "Content-type": "application/JSON" },
-      body: JSON.stringify({
-        description: addQuote,
-      }),
-    });
-  };
-
-  /**
-   * This function deletes a quote with a specific object id
-   * @param {number} itemId Refers to the specific objects id
-   */
   const deleteQuote = async (itemId) => {
-    //Updating the state of someRandom, causing useEffect to run again, to fetch the latest data
-    setSomeRandom(Math.random());
+    setRandomizedValue(Math.random());
 
     //Sending a DELETE request with the value of itemId
     await fetch("http://localhost:3000/Quotes/" + itemId, {
@@ -54,13 +25,10 @@ const Quote = () => {
     });
   };
 
-  /**
-   * This function takes the value of editQuoteValue and sends a PUT request with that value.
-   * Also checks if the user has entered a value in the input field
-   * @param {number} itemId Refers to the specific objects id
-   */
+  //This function takes the value of editQuoteValue and sends a PUT request with that value.
+
   const editQuote = async (itemId) => {
-    //Validating input fields, to check if user has entered a empty string value
+    //Validating input fields
     if (editQuoteValue === "") {
       document.getElementById("errorEditQuote" + itemId).innerHTML =
         "Please enter a text";
@@ -70,8 +38,7 @@ const Quote = () => {
         "You have edited the quote";
     }
 
-    //Updating the state of someRandom, causing useEffect to run again, to fetch the latest data
-    setSomeRandom(Math.random());
+    setRandomizedValue(Math.random());
 
     //Sending a PUT request with the value of itemId and editQuoteValue
     await fetch("http://localhost:3000/Quotes/" + itemId, {
@@ -85,16 +52,13 @@ const Quote = () => {
   };
 
   const showQuoteField = (itemId) => {
-    document.getElementById("quoteDiv" + itemId).style.display = "block";
+    document.getElementById("editQuoteDiv" + itemId).style.display = "block";
   };
 
-  /**
-   * This function takes the value of addComment and sends a POST request with that value.
-   * Also checks if the user has entered a value in the input field
-   * @param {number} itemId Refers to the specific objects id
-   */
+  //This function takes the value of addComment and sends a POST request with that value.
+
   const addComments = async (itemId) => {
-    //Validating input fields, to check if user has entered a empty string value
+    //Validating input fields
     if (addComment === "") {
       document.getElementById("errorAddComment" + itemId).innerHTML =
         "Please enter a text";
@@ -104,8 +68,7 @@ const Quote = () => {
         "You have added a comment";
     }
 
-    //Updating the state of someRandom, causing useEffect to run again, to fetch the latest data
-    setSomeRandom(Math.random());
+    setRandomizedValue(Math.random());
 
     //Sending a POST request with the value of addComment and itemId
     await fetch("http://localhost:3000/Comments", {
@@ -118,13 +81,10 @@ const Quote = () => {
     });
   };
 
-  /**
-   * This function deletes a comment with a specific object id
-   * @param {number} itemId Refers to the specific objects id
-   */
+  //This function deletes a comment with a specific object id
+
   const deleteComment = async (itemId) => {
-    //Updating the state of someRandom, causing useEffect to run again, to fetch the latest data
-    setSomeRandom(Math.random());
+    setRandomizedValue(Math.random());
 
     //Sending a Delete request with the value of itemId
     await fetch("http://localhost:3000/Comments/" + itemId, {
@@ -133,23 +93,16 @@ const Quote = () => {
     });
   };
 
-  /**
-   *This function changes the display property in a specific div element.
-   *That specific div element has a display property value of none, which is then changed to block
-   *@param {number} itemId Refers to a specific div element
-   */
+  //This function changes the display property of a div element from none to flex.
+
   const showCommentField = (itemId) => {
-    document.getElementById("commentDiv" + itemId).style.display = "block";
+    document.getElementById("commentDiv" + itemId).style.display = "flex";
   };
 
-  /**
-   * This function takes the value of editCommentValue and sends a PUT request with that value.
-   * Also checks if the user has entered a value in the input field
-   * @param {number} itemId Refers to the specific objects id
-   * @param {number} quoteId Refers to the specific objects quoteId value
-   */
+  //This function takes the value of editCommentValue and sends a PUT request with that value.
+
   const editComment = async (itemId, quoteId) => {
-    //Validating input fields, to check if user has entered a empty string value
+    //Validating input fields
     if (editCommentValue === "") {
       document.getElementById("errorEditComment" + itemId).innerHTML =
         "Please enter a text";
@@ -159,8 +112,7 @@ const Quote = () => {
         "You have edited the comment";
     }
 
-    //Updating the state of someRandom, causing useEffect to run again, to fetch the latest data
-    setSomeRandom(Math.random());
+    setRandomizedValue(Math.random());
 
     //Sending a PUT request with the value of itemId, editCommentValue and quoteId
     await fetch("http://localhost:3000/Comments/" + itemId, {
@@ -175,109 +127,134 @@ const Quote = () => {
   };
 
   return (
-    <div className={"quotesWrapper"}>
+    <div className={"quoteWrapper"}>
       <div className={"quote"}>
-        <label id={"createQuotes"}>Add quote</label>
-        <br></br>
-
-        {/*Changes the value of addQuote to the value entered in the input field*/}
-        <input
-          id={"createQuotes"}
-          onInput={(e) => setAddQuote(e.target.value)}
-        ></input>
-
-        {/*Button to add quote*/}
-        <button onClick={addQuotes}>Add</button>
-
-        {/*Displays a message if the user tries to add a quote with an empty value, and if they've added a quote*/}
-        <p id={"errorAddQuote"}></p>
-      </div>
-      {
-        <div className={"quote"}>
-          <h2 className={"quoteText"}>{state.description}</h2>
-          <div className={"bottomQuoteWrapper"}>
-            {/*Displays a message if the user tries to edit the quote with an empty value, and if they've edited the quote*/}
-            <p id={"errorEditQuote" + state.id}></p>
-            <div className={"buttonWrapper"}>
-              <br></br>
-              {/*Changes the value of addComment to the value entered in input field*/}
-              <input onInput={(a) => setAddComment(a.target.value)}></input>
-              {/*Adds a comment to the specific quote*/}
-              <button onClick={() => addComments(state.id)}>
-                Add a comment
-              </button>
-              <br></br>
-
-              {/*Displays a message if the user tries to add a comment that is empty, and if they've added a comment*/}
-              <p id={"errorAddComment" + state.id}></p>
-
-              {/*Onclick of this button, it will display the input field for editing a quote*/}
-              <button onClick={() => showQuoteField(state.id)}>Update</button>
-              {/*A div containing input field and a button to edit a quote, and is only shown when user clicks the Update button*/}
-              <div id={"quoteDiv" + state.id} style={{ display: "none" }}>
-                {/*Changes the value of editQuoteValue to the value entered in the input field*/}
-                <input
-                  onInput={(a) => setEditQuoteValue(a.target.value)}
-                ></input>
-
-                {/*Edits specific quote*/}
-                <button onClick={() => editQuote(state.id)}>Edit</button>
-
-                <br></br>
-
-                {/*Displays a message if the user tries to edit the quote with an empty value, and if they've edited the quote*/}
-                <p id={"errorEditQuote" + state.id}></p>
-              </div>
+        <h2 className={"quoteText"}>{state.description}</h2>
+        <div className={"bottomQuoteWrapper"}>
+          <div className={"buttonWrapperQuote"}>
+            {isLoggedIn ? (
+              /*Displays the input field for editing a quote*/
               <button
-                className={"button"}
+                className={"quoteButton"}
+                onClick={() => showQuoteField(state.id)}
+              >
+                Update
+              </button>
+            ) : null}
+            {/*A div containing input field and a button to edit a quote, and is shown when user clicks the Update button*/}
+            <div id={"editQuoteDiv" + state.id} style={{ display: "none" }}>
+              {/*Changes the value of editQuoteValue to the value entered in the input field*/}
+              <input onInput={(a) => setEditQuoteValue(a.target.value)}></input>
+
+              {/*Edits specific quote*/}
+              <button
+                className={"quoteButton"}
+                onClick={() => editQuote(state.id)}
+              >
+                Edit
+              </button>
+
+              <br></br>
+
+              {/*Displays error message if the user edits the quote with an empty value, or if they've sucessfully edited the quote*/}
+              <p id={"errorEditQuote" + state.id}></p>
+            </div>
+            {isLoggedIn ? (
+              <button
+                className={"quoteButton"}
                 onClick={() => deleteQuote(state.id)}
               >
                 Delete
               </button>
+            ) : null}
+          </div>
+
+          {/*Displays error message if the user edits the quote with an empty value, or if they've sucessfully edited the quote*/}
+          <p id={"errorEditQuote" + state.id}></p>
+          <div className={"commentsWrapper"}>
+            <div className={"addCommentWrapper"}>
+              <p id={"errorAddComment" + state.id}></p>
+
+              {/*Changes the value of addComment to the value entered in input field*/}
+              <input
+                className={"editCommentsInputField"}
+                onInput={(a) => setAddComment(a.target.value)}
+              ></input>
+
+              {isLoggedIn ? (
+                /*Adds a comment to the quote*/
+                <button
+                  className={"linkButton"}
+                  onClick={() => addComments(state.id)}
+                >
+                  Add a comment
+                </button>
+              ) : (
+                <Link to="/login" className={"linkButton"}>
+                  Add
+                </Link>
+              )}
+
+              {/*Displays error message if the user adds a comment with an empty value, or if they've sucessfully added the comment*/}
+              <p id={"errorAddComment" + state.id}></p>
             </div>
             {state.comments.map((anotherItem) => (
-              <div>
+              <div className={"commentWrapper"}>
                 {/*Displays the description of a specific comment*/}
-                <p className={"someColor"}>{anotherItem.description}</p>
+                <p className={"commentDescription"}>
+                  {anotherItem.description}
+                </p>
 
-                {/*Deletes specific comment*/}
-                <button onClick={() => deleteComment(anotherItem.id)}>
-                  Delete
-                </button>
-                {/*Onclick of this button, it will display a input field for editing a comment*/}
-                <button onClick={() => showCommentField(anotherItem.id)}>
-                  Update
-                </button>
-
-                <br></br>
-
-                {/*A div containing input field and a button to edit a comment, and is only shown when user clicks the Update button*/}
+                {isLoggedIn ? (
+                  <div className={"commentsButtonWrapper"}>
+                    {/*Deletes specific comment*/}
+                    <button
+                      className={"linkButton"}
+                      onClick={() => deleteComment(anotherItem.id)}
+                    >
+                      Delete
+                    </button>
+                    {/*Displays a input field for editing a comment*/}
+                    <button
+                      className={"linkButton"}
+                      onClick={() => showCommentField(anotherItem.id)}
+                    >
+                      Update
+                    </button>
+                  </div>
+                ) : null}
+                {/*A div containing input field and a button to edit a comment, and is shown when user clicks the Update button*/}
                 <div
                   id={"commentDiv" + anotherItem.id}
                   style={{ display: "none" }}
+                  className={"editCommentsInputFieldWrapper"}
                 >
                   {/*Changes the value of editCommentValue to the value entered in the input field*/}
                   <input
                     onInput={(e) => setEditCommentValue(e.target.value)}
+                    className={"editCommentsInputField"}
                   ></input>
 
-                  {/*Edits specific comment*/}
+                  {/*Edit comment*/}
                   <button
                     onClick={() =>
                       editComment(anotherItem.id, anotherItem.quoteId)
                     }
+                    className={"linkButton"}
                   >
                     Edit
                   </button>
-
-                  {/*Displays a message if the user tries to edit the comment with an empty value, and if they've edited the comment*/}
-                  <p id={"errorEditComment" + anotherItem.id}></p>
                 </div>
+                {/*Displays a message if the user edits the comment with an empty value, or if they've sucessfully edited the comment*/}
+                <p
+                  className={"errorText"}
+                  id={"errorEditComment" + anotherItem.id}
+                ></p>
               </div>
             ))}
           </div>
         </div>
-      }
+      </div>
     </div>
   );
 };

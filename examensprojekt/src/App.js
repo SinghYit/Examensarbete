@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Quotes from "./components/Quotes";
 import Quote from "./components/Quote";
+import LoginPage from "./components/LoginPage";
 import "./App.css";
 
 function App() {
@@ -10,10 +11,12 @@ function App() {
     <div>
       <Navbar />
       <div className="containerWrapper">
+        <h1 className="motto">Motiden</h1>
         <Routes>
           <Route path="/" element={<Quotes />} />
-          <Route path="/quote" element={<Quote name="kalle" />} />
+          <Route path="/quote" />
           <Route path="/quote/:id" element={<Quote />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </div>

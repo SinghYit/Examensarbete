@@ -7,6 +7,23 @@
   padding: 0 80px;
 }
 
+.motto {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 36px;
+  color: #6883bc;
+}
+
+p,
+h1,
+h2,
+h3,
+label,
+button,
+a {
+  font-family: "Courier New", Courier, monospace;
+}
+
 /*Navbar*/
 .navbar {
   display: flex;
@@ -76,6 +93,41 @@
   transform: translateY(-10px) rotate(-45deg);
 }
 
+.createQuotesLabel {
+  margin-top: 15px;
+  font-size: 18px;
+  color: white;
+}
+
+.createQuotesInputField {
+  border: #6883bc 5px solid;
+  border-radius: 5px;
+  width: 65%;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.addQuoteButton {
+  margin-top: 15px;
+  background-color: #6883bc;
+  border: #6883bc solid 5px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.quoteWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .quotesWrapper {
   display: flex;
   flex-wrap: wrap;
@@ -83,6 +135,14 @@
 }
 
 .quote {
+  flex-basis: 50%;
+  background-color: #79a7d3;
+  border: solid 5px #6883bc;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.quotes {
   flex-basis: 30%;
   background-color: #79a7d3;
   border: solid 5px #6883bc;
@@ -91,23 +151,112 @@
 }
 
 .quoteText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   min-height: 70px;
   color: white;
   background-color: #6883bc;
 }
 
+.buttonWrapperQuote {
+  background-color: #6883bc;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .buttonWrapper {
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
 }
 
-.button {
-  width: 33%;
-  border-color: aqua;
+.quoteButton {
+  color: white;
+  background-color: #79a7d3;
+  border: #79a7d3 solid 5px;
   border-radius: 5px;
-  background-color: white;
+  cursor: pointer;
+}
+
+.linkButton {
+  color: white;
+  background-color: #6883bc;
+  border: #6883bc solid 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.linkText {
+  color: white;
+  text-decoration: none;
+}
+
+.addCommentWrapper {
+  border: #6883bc solid 5px;
+  border-radius: 5px;
+  min-width: 220px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.commentWrapper {
+  border: #6883bc solid 5px;
+  border-radius: 5px;
+  min-width: 220px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.commentsWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.commentDescription {
+  font-size: 18px;
+  color: white;
+}
+
+.commentsButtonWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.editCommentsInputFieldWrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.editCommentsInputField {
+  border: #6883bc 5px solid;
+  border-radius: 5px;
+  width: 65%;
+}
+
+.errorText {
+  font-size: 14px;
+  color: white;
+}
+
+.logButton {
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -145,10 +294,17 @@
   }
 
   .containerWrapper {
-    padding: 0;
+    padding: 20px;
   }
 
   .quote {
     flex-basis: 100%;
+  }
+
+  .quotesWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
   }
 }
