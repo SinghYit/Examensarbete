@@ -42,7 +42,7 @@ const LoginPage = () => {
       {/*Changes the value of addQuote to the value entered in the input field*/}
       <input
         id={"createQuotes"}
-        className={"createQuotesInputField"}
+        className={"logInInputField"}
         onInput={(e) => setUserName(e.target.value)}
       ></input>
 
@@ -51,7 +51,7 @@ const LoginPage = () => {
       {/*Changes the value of addQuote to the value entered in the input field*/}
       <input
         id={"createQuotes"}
-        className={"createQuotesInputField"}
+        className={"logInInputField"}
         onInput={(e) => setPassword(e.target.value)}
       ></input>
 

@@ -259,6 +259,12 @@ a {
   cursor: pointer;
 }
 
+.logInInputField {
+  border: #6883bc 5px solid;
+  border-radius: 5px;
+  width: 20%;
+}
+
 @media (max-width: 768px) {
   .toggle-button {
     display: flex;
@@ -306,5 +312,11 @@ a {
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: column;
+  }
+
+  .logInInputField {
+    border: #6883bc 5px solid;
+    border-radius: 5px;
+    width: 75%;
   }
 }
